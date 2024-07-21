@@ -1,6 +1,6 @@
 package com.dmrj.dm_resqjeevan.entities;
 
-import com.dmrj.dm_resqjeevan.helpers.AppConstants;
+import com.dmrj.dm_resqjeevan.helpers.Status;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -8,7 +8,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -19,7 +18,6 @@ import java.util.stream.Collectors;
 @Entity(name = "superadmin")
 @Table(name = "superadmin")
 public class AdminInfo implements UserDetails {
-    private UUID id;
     private String adminName;
     @Id
     private String username;
@@ -28,7 +26,7 @@ public class AdminInfo implements UserDetails {
     @Column(name = "location", nullable = false)
     private String location;
     private String role;
-    private String sessionId;
+    private Status status;
     private boolean isAccountNonExpired=true;
     private boolean isAccountNonLocked=true;
     private boolean isCredentialsNonExpired=true;

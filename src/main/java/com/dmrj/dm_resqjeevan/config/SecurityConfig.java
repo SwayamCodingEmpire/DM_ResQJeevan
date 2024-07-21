@@ -38,8 +38,10 @@ public class SecurityConfig {
             authorize.requestMatchers("/server1/**").permitAll();
             authorize.anyRequest().authenticated();
         }).sessionManagement(session->{
-            session.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        }).authenticationProvider(authenticationProvider).addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+            session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
+        })
+                .authenticationProvider(authenticationProvider)
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .csrf(AbstractHttpConfigurer::disable);
         return httpSecurity.build();
     }
@@ -47,7 +49,7 @@ public class SecurityConfig {
     @Bean
     public CorsFilter corsFilter(){
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://127.0.0.1:62870","http://127.0.0.1:52443"));
+        configuration.setAllowedOrigins(List.of("http://127.0.0.1:49865","http://127.0.0.1:50296"));
         configuration.setAllowedMethods(List.of("*"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);

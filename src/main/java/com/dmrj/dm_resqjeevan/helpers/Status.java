@@ -1,6 +1,6 @@
 package com.dmrj.dm_resqjeevan.helpers;
 
-public enum MessageType {
+public enum Status {
     ONLINE,
     OFFLINE
 }

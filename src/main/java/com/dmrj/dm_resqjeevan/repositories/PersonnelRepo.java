@@ -1,6 +1,7 @@
 package com.dmrj.dm_resqjeevan.repositories;
 
 import com.dmrj.dm_resqjeevan.entities.PersonnelInfo;
+import com.dmrj.dm_resqjeevan.helpers.Status;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -23,4 +24,8 @@ public interface PersonnelRepo extends JpaRepository<PersonnelInfo,String> {
     @Transactional
     @Query("UPDATE personnels_Info p SET p.teamId=:teamId WHERE p.regimentNo=:regimentNo")
     int updateTeamIdByRegimentNo(@Param("regimentNo") String regimentNo, @Param("teamId") String teamId);
+    List<PersonnelInfo> findAllByStatus(Status status);
+    @Modifying
+    @Query("UPDATE personnels_Info p SET p.status=:status WHERE p.regimentNo=:regimentNo")
+    int updateStatusByRegimentNo(@Param("regimentNo")String regimentNo,@Param("status") Status status);
 }

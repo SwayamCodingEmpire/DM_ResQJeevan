@@ -30,8 +30,8 @@ public class PublicController {
     public ResponseEntity<LoginResponse> loginSuperAdmin(@RequestBody Login login){
         UserDetails userDetails = authenticationService.authenticate(login);
         logger.info(userDetails.toString());
-        if(userDetails instanceof AdminInfo){
-            AdminInfo authenticatedAdmin = (AdminInfo)userDetails;
+        if(userDetails instanceof UserDetails){
+            UserDetails authenticatedAdmin = userDetails;
             String jwtToken = jwtServiceImpl.generateToken(authenticatedAdmin);
             LoginResponse loginResponse = new LoginResponse();
             loginResponse.setToken(jwtToken);

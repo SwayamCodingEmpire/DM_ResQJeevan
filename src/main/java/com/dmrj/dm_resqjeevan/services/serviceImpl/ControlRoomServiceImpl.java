@@ -4,6 +4,7 @@ import com.dmrj.dm_resqjeevan.dto.PersonnelInfoDto;
 import com.dmrj.dm_resqjeevan.dto.PromoteOrDemote;
 import com.dmrj.dm_resqjeevan.entities.PersonnelInfo;
 import com.dmrj.dm_resqjeevan.helpers.AppConstants;
+import com.dmrj.dm_resqjeevan.helpers.Status;
 import com.dmrj.dm_resqjeevan.repositories.PersonnelRepo;
 import com.dmrj.dm_resqjeevan.services.ControlRoomService;
 import org.modelmapper.ModelMapper;
@@ -58,6 +59,22 @@ public class ControlRoomServiceImpl implements ControlRoomService {
             personnelInfoDtos.add(convertToPersonnelInfoDto(personnelInfo));
         }
         return personnelInfoDtos;
+    }
+
+    public boolean makePersonnelOnline(String regimentNo){
+        int r = personnelRepo.updateStatusByRegimentNo(regimentNo, Status.ONLINE);
+        if(r==1)
+            return true;
+        else
+            return false;
+    }
+
+    public boolean makePersonnelOffline(String regimentNo){
+        int r = personnelRepo.updateStatusByRegimentNo(regimentNo, Status.OFFLINE);
+        if(r==1)
+            return true;
+        else
+            return false;
     }
 
     private PersonnelInfo convertToPersonnelInfo(PersonnelInfoDto personnelInfoDto){
