@@ -12,5 +12,6 @@ public class ChatNotification {
     private long id;
     private String senderId;
     private String recipientId;
-    private String content;
+    private double lat;
+    private double lng;
 }

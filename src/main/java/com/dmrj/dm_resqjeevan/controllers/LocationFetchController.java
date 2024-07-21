@@ -44,7 +44,8 @@ public class LocationFetchController {
                 savedMsg.getId(),
                 savedMsg.getSenderId(),
                 savedMsg.getRecipientId(),
-                savedMsg.getContent()
+                savedMsg.getLat(),
+                savedMsg.getLng()
         ));
     }
 
